@@ -1,9 +1,12 @@
-﻿using Practice.Tasks;
+using Practice.Tasks;
 
 class Program
 {
     static void Main(string[] args)
     {
+        #region Task1
+
+        Console.WriteLine("Task #1:");
         Student obj = new Student();
         try
         {
@@ -57,6 +60,107 @@ class Program
             Console.WriteLine($"HashCode: {item.Key.GetHashCode()}");
         }
         Console.WriteLine(obj.GetHashCode());
+        Console.WriteLine();
 
+        #endregion
+
+        Console.WriteLine("Task #2:");
+        Task2();
+        Console.WriteLine();
+
+
+    }
+
+    private static void PrintArray<T>(T[] array)
+    {
+        Console.Write("[ ");
+        for(int i = 0; i < array.Length; ++i)
+        {
+            if(i == array.Length - 1)
+            {
+                Console.Write(array[i]);
+            }
+            else
+            {
+                Console.Write($"{array[i]}, ");
+            }
+        }
+        Console.Write(" ]");
+    }
+    private static void Task2()
+    {
+        try
+        {
+
+            var arrGenCombination = new int[] {1, 2, 3}.GenCombination(2, OwnEqualityComparer<int>.Instance);
+            Console.WriteLine("Generation of Combinations:");
+            foreach(var item in arrGenCombination)
+            {
+                var arr = item.ToArray();
+                PrintArray(arr);
+            }
+            Console.WriteLine();
+
+        }
+        catch(ArgumentNullException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        try
+        {
+            var arrGenSubset = new int[] {1, 2}.GenSubset(OwnEqualityComparer<int>.Instance);
+            Console.WriteLine("Generation of Subset:");
+            foreach(var item in arrGenSubset)
+            {
+                var arr = item.ToArray();
+                PrintArray(arr);
+            }
+            Console.WriteLine();
+        }
+        catch(ArgumentNullException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        try
+        {
+            var arrGenPermutations = new int[] {1, 2, 3}.GenPermutations(OwnEqualityComparer<int>.Instance);
+            Console.WriteLine("Generation of Permutations:");
+            foreach(var item in arrGenPermutations)
+            {
+                var arr = item.ToArray();
+                PrintArray(arr);
+            }
+            Console.WriteLine();
+        }
+        catch(ArgumentNullException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
