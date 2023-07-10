@@ -1,4 +1,5 @@
 using Practice.Tasks;
+using Sorting;
 
 class Program
 {
@@ -68,6 +69,9 @@ class Program
         Task2();
         Console.WriteLine();
 
+        Console.WriteLine("Task #3:");
+        Task3();
+        Console.WriteLine();
 
     }
 
@@ -149,6 +153,58 @@ class Program
                 PrintArray(arr);
             }
             Console.WriteLine();
+        }
+        catch(ArgumentNullException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private static void Task3()
+    {
+        try
+        {
+            Comparison<OwnType> comparison = OwnTypeComparer.Compare;
+
+            var array = new[] { new OwnType(5, "123"), new OwnType(1, "234"), new OwnType(8, "5342"), new OwnType(12, "123"), 
+                new OwnType(3, "567"), new OwnType(21, "789")};
+
+            var intArray = new[] {23, 544, 21, 554, 5432, 21, 123, 5, 2};
+
+            #region first
+
+            
+            Console.WriteLine("Insertion Sort:");
+            array.Sort(AbstractSorting<OwnType>.SortingMethod.Ascending, new InsertionSort<OwnType>());
+            PrintArray(array);
+
+            Console.WriteLine($"{Environment.NewLine}Select Sort:");
+            array.Sort(AbstractSorting<OwnType>.SortingMethod.Descending, new InsertionSort<OwnType>(), OwnTypeComparer.Instance);
+            PrintArray(array);
+
+            Console.WriteLine($"{Environment.NewLine}HeapSort:");
+            intArray.Sort(AbstractSorting<int>.SortingMethod.Ascending, new HeapSort<int>());
+            PrintArray(intArray);
+
+            Console.WriteLine($"{Environment.NewLine}QuickSort:");
+            array.Sort(AbstractSorting<OwnType>.SortingMethod.Ascending, new QuickSort<OwnType>(), (IComparer<OwnType>)OwnTypeComparer.Instance);
+            PrintArray(array);
+
+            Console.WriteLine($"{Environment.NewLine}MergeSort:");
+            array.Sort(AbstractSorting<OwnType>.SortingMethod.Descending, new MergeSort<OwnType>(), comparison);
+            PrintArray(array);
+            Console.WriteLine();
+
+
+            #endregion
         }
         catch(ArgumentNullException ex)
         {
